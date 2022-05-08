@@ -133,7 +133,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         include('form.php');
     }
 } else {
-
     $errors = FALSE;
     if (isset($_POST['field-name'])) {
         $name = $_POST['field-name'];
@@ -193,7 +192,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $conn = new PDO("mysql:host=localhost;dbname=u41810", 'u41810', '3516685', array(PDO::ATTR_PERSISTENT => true));
 
         $user = $conn->prepare("INSERT INTO `form` (id, name, email, data, gender, konech, bio, login, pass) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        //"INSERT INTO form SET id = ?,name = ?, email = ?, data = ?, gender = ?, konech = ?, bio = ?, login = ?, pass = ?");
         $id_user = $conn->lastInsertId();
         $user->execute([$id_user, $_POST['field-name'], $_POST['field-email'], date('Y-m-d', strtotime($_POST['field-date'])), $_POST['radio-gender'], $_POST['radio-konech'], $_POST['biography'], $login, $hpass]);
 
@@ -201,7 +199,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         //$user1->execute([$id_user, $sup]);
         $result = true;
     }
-
+    if(!$errors){
     setcookie('save', '1');
     header('Location: ./');
+    }
+    else{
+        include('form.php');
+    }
+    /*header('Location: ./');*/
 }

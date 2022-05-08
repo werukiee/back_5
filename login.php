@@ -40,29 +40,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   </head>
 
   <body>
-    <h2>Авторизация</h2>
-    <form action="" method="post">
-      <input name="login" placeholder="логин" <?php if (!empty($nologin)) {
-                                                echo 'class= bg-danger text-light is-invalid';
-                                              } ?> />
-      </br>
-      <input name="pass" placeholder="пароль" <?php if (!empty($wrongpass)) {
-                                                echo 'class= bg-danger text-light is-invalid';
-                                              } ?> />
-      </br>
-      <input type="submit" value="Войти" />
-      </br>
-      <?php
-      if (!empty($nologin)) {
-        echo '<span class="text-danger">' . $nologin . '</span>';
-      }
-      ?>
-      <?php
-      if (!empty($wrongpass)) {
-        echo '<span class="text-danger">' . $wrongpass . '</span>';
-      }
-      ?>
-    </form>
+    
+    <div class="block_form" id="form">
+      <div class="top_bot">
+      <h1>Авторизация</h1>
+        <form action="" method="post">
+        <div pl-2 class="form-row">
+        <label>Логин:</label>
+          <input name="login" placeholder="логин" <?php if (!empty($nologin)) {
+                                                    echo 'class= bg-danger text-light is-invalid';
+                                                  } ?> />
+                                                  <div pl-2 class="form-row">
+          </br>
+          <div pl-2 class="form-row">
+          <label>Пароль:</label>
+          <input name="pass" placeholder="пароль" <?php if (!empty($wrongpass)) {
+                                                    echo 'class= bg-danger text-light is-invalid';
+                                                  } ?> />
+                                                  <div pl-2 class="form-row">
+          </br>
+          <input class="button3" class="btn btn-primary btn-sm" type="submit" value="Войти" />
+          </br>
+          <?php
+          if (!empty($nologin)) {
+            echo '<span class="text-danger">' . $nologin . '</span>';
+          }
+          ?>
+          <?php
+          if (!empty($wrongpass)) {
+            echo '<span class="text-danger">' . $wrongpass . '</span>';
+          }
+          ?>
+        </form>
+      </div>
+    </div>
   </body>
 
   </html>
